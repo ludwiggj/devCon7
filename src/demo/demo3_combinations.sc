@@ -1,13 +1,16 @@
 package demo
-import demo.Anagrams.{combinations, wordOccurrences}
+import demo.Anagrams.{occurrenceCombinations, characterOccurrencesInWord}
 object demo3_combinations {
 
   // combinations of occurrences
-  wordOccurrences("is")
+  characterOccurrencesInWord("is")
 
-  combinations(wordOccurrences("is"))
+  occurrenceCombinations(
+    characterOccurrencesInWord("is")
+  )
 
-  wordOccurrences("Ernie")
+  characterOccurrencesInWord("Ernie")
 
-  combinations(wordOccurrences("Ernie"))
+  occurrenceCombinations(
+    characterOccurrencesInWord("Ernie")
 }

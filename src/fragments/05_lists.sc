@@ -14,4 +14,12 @@ object lists {
 
   fruit.tail.tail.tail
 
+  // list is immutable
+  fruit :+ "bananas"
+
+  fruit
+
+  fruit.updated(0, "kumquats")
+
+  fruit
 }

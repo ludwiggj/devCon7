@@ -1,15 +1,16 @@
 package demo
-import demo.Anagrams.{ Occurrences, sentenceOccurrences, wordOccurrences, subtract }
+import demo.Anagrams.{ CharacterOccurrences, characterOccurrencesInWord,
+                       characterOccurrencesInSentence, subtractOccurrences }
 
 object demo4_subtract {
 
   // subtract
-  sentenceOccurrences(List("Ernie", "is", "evil"))
+  characterOccurrencesInSentence(List("Ernie", "is", "evil"))
 
-  wordOccurrences("leer")
+  characterOccurrencesInWord("leer")
 
-  subtract(
-    sentenceOccurrences(List("Ernie", "is", "evil")),
-    wordOccurrences("leer")
+  subtractOccurrences(
+    characterOccurrencesInSentence(List("Ernie", "is", "evil")),
+    characterOccurrencesInWord("leer")
   )
 }

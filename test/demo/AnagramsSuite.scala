@@ -20,55 +20,55 @@ class AnagramsSuite extends FunSuite {
     val Linux = List(('i', 1), ('l', 1), ('n', 1), ('u', 1), ('x', 1))
   }
 
-  test("wordOccurrences: abcd") {
+  test("characterOccurrences for word: abcd") {
     new TestData {
-      assert(wordOccurrences("abcd") === List(('a', 1), ('b', 1), ('c', 1), ('d', 1)))
+      assert(characterOccurrencesInWord("abcd") === List(('a', 1), ('b', 1), ('c', 1), ('d', 1)))
     }
   }
 
-  test("wordOccurrences: Robert") {
-      new TestData {
-        assert(wordOccurrences("Robert") === List(('b', 1), ('e', 1), ('o', 1), ('r', 2), ('t', 1)))
-      }
-    }
-
-  test("sentenceOccurrences: abcd e") {
+  test("characterOccurrences for word: Robert") {
     new TestData {
-      assert(sentenceOccurrences(List("abcd", "e"))
+      assert(characterOccurrencesInWord("Robert") === List(('b', 1), ('e', 1), ('o', 1), ('r', 2), ('t', 1)))
+    }
+  }
+
+  test("characterOccurrences for sentence: abcd e") {
+    new TestData {
+      assert(characterOccurrencesInSentence(List("abcd", "e"))
         === List(('a', 1), ('b', 1), ('c', 1), ('d', 1), ('e', 1)))
     }
   }
 
-  test("sentenceOccurrences: Ro ber t") {
+  test("characterOccurrences for sentence: Ro ber t") {
     new TestData {
-      assert(sentenceOccurrences(List("Ro", "ber", "t"))
+      assert(characterOccurrencesInSentence(List("Ro", "ber", "t"))
         === List(('b', 1), ('e', 1), ('o', 1), ('r', 2), ('t', 1)))
     }
   }
 
-  test("sentenceOccurrences: [Empty List]") {
+  test("characterOccurrences for sentence: [Empty List]") {
     new TestData {
-      assert(sentenceOccurrences(List()) === List())
+      assert(characterOccurrencesInSentence(List()) === List())
     }
   }
 
-  test("dictionaryByOccurrences.get: eat") {
+  test("wordsForOccurrences: eat") {
     new TestData {
-      assert(dictionaryByOccurrences.get(List(('a', 1), ('e', 1), ('t', 1))).map(_.toSet)
+      assert(wordsForOccurrences.get(List(('a', 1), ('e', 1), ('t', 1))).map(_.toSet)
         === Some(Set("ate", "eat", "tea")))
     }
   }
 
-  test("dictionaryByOccurrences.get: bleat") {
+  test("wordsForOccurrences: bleat") {
     new TestData {
-      assert(dictionaryByOccurrences.get(List(('a', 1), ('b', 1), ('e', 1), ('l', 1), ('t', 1))).map(_.toSet)
+      assert(wordsForOccurrences.get(List(('a', 1), ('b', 1), ('e', 1), ('l', 1), ('t', 1))).map(_.toSet)
         === Some(Set("bleat", "table")))
     }
   }
 
-  test("dictionaryByOccurrences.get: zzzzzz") {
+  test("wordsForOccurrences: zzzzzz") {
     new TestData {
-      assert(dictionaryByOccurrences.get(List(('z', 6))).map(_.toSet) === None)
+      assert(wordsForOccurrences.get(List(('z', 6))).map(_.toSet) === None)
     }
   }
 
@@ -90,43 +90,43 @@ class AnagramsSuite extends FunSuite {
     }
   }
 
-  test("subtract: lard - r") {
+  test("subtractOccurrences: lard - r") {
     new TestData {
-      assert(subtract(lard, r) === lad)
+      assert(subtractOccurrences(lard, r) === lad)
     }
   }
 
-  test("subtract: larder - r") {
+  test("subtractOccurrences: larder - r") {
     new TestData {
-      assert(subtract(larder, r) === larde)
+      assert(subtractOccurrences(larder, r) === larde)
     }
   }
 
-  test("subtract: lard - lard") {
+  test("subtractOccurrences: lard - lard") {
     new TestData {
-      assert(subtract(lard, lard) === List())
+      assert(subtractOccurrences(lard, lard) === List())
     }
   }
 
-  test("subtract maintains order") {
+  test("subtractOccurrences maintains order") {
     new TestData {
-      assert(subtract(Linux_rulez, rulez) === Linux)
+      assert(subtractOccurrences(Linux_rulez, rulez) === Linux)
     }
   }
 
-  test("ernie is evil") {
+  test("subtractOccurrences: ernie is evil - ernie") {
     val ernieIsEvil = List(('e', 3), ('i', 3), ('l', 1), ('n', 1), ('r', 1), ('s', 1), ('v', 1))
     val ernie = List(('e', 2), ('i', 1), ('n', 1), ('r', 1))
-    assert(subtract(ernieIsEvil, ernie) === List(('e', 1), ('i', 2), ('l', 1), ('s', 1), ('v', 1)))
+    assert(subtractOccurrences(ernieIsEvil, ernie) === List(('e', 1), ('i', 2), ('l', 1), ('s', 1), ('v', 1)))
   }
 
-  test("combinations: []") {
+  test("occurrenceCombinations: []") {
     new TestData {
-      assert(combinations(Nil) === List(Nil))
+      assert(occurrenceCombinations(Nil) === List(List()))
     }
   }
 
-  test("combinations: abba") {
+  test("occurrenceCombinations: abba") {
     new TestData {
       val abba = List(('a', 2), ('b', 2))
       val abbacomb = List(
@@ -138,9 +138,8 @@ class AnagramsSuite extends FunSuite {
         List(('a', 2), ('b', 1)),
         List(('b', 2)),
         List(('a', 1), ('b', 2)),
-        List(('a', 2), ('b', 2))
-      )
-      assert(combinations(abba).toSet === abbacomb.toSet)
+        List(('a', 2), ('b', 2)))
+      assert(occurrenceCombinations(abba).toSet === abbacomb.toSet)
     }
   }
 
@@ -174,8 +173,7 @@ class AnagramsSuite extends FunSuite {
         List("Uzi", "Rex", "null"),
         List("Zulu", "nil", "Rex"),
         List("rulez", "Linux"),
-        List("Linux", "rulez")
-      )
+        List("Linux", "rulez"))
       assert(sentenceAnagrams(sentence).toSet === anas.toSet)
     }
   }
@@ -197,8 +195,7 @@ class AnagramsSuite extends FunSuite {
         List("my", "sane"),
         List("my", "Sean"),
         List("say", "men"),
-        List("yes", "man")
-      )
+        List("yes", "man"))
       assert(sentenceAnagrams(sentence).toSet === anas.toSet)
     }
   }
