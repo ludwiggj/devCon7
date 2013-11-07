@@ -23,6 +23,7 @@ object demo5_sentenceAnagrams {
         } yield (word :: restOfSentence)
       }
     }
+
     findAnagram(characterOccurrencesInSentence(sentence))
   }
 

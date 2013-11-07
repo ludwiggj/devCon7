@@ -13,4 +13,5 @@ object demo3_combinations {
 
   occurrenceCombinations(
     characterOccurrencesInWord("Ernie")
+  )
 }

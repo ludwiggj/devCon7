@@ -17,7 +17,7 @@ object demo1_occurrences {
     }.toList.sorted
   }
 
-  wordOccurrences("Ernie")
+  characterOccurrencesInWord("Ernie")
 
   // Function - characterOccurrencesInSentence
   def characterOccurrencesInSentence(s: Sentence) =
