@@ -5,7 +5,7 @@ This code base supported a talk I gave on **Functional Programming in Scala** at
  developers. The material is based on the knowledge I gained in completing the
  [Functional Programming Principles in Scala](https://www.coursera.org/course/progfun) course. 
  
-[Slides](Functional%20Programming%20in%20Scala.pptx) are available.
+[Slides](FunctionalProgrammingInScala.pdf) are available.
 
 The code breaks down as follows:
 
